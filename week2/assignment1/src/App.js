@@ -16,15 +16,15 @@ function App(props) {
     )
   }
   
-  // const maps = () => {
-  // }
+  
   return (
 
     <ThemeContextConsumer>
 
           {context => (
-            <div>
-              <input placeholder="New Movie" type="text"/>
+            <div className="main">
+              
+              <input className="input" placeholder="New Movie" type="text"/>
               <button>Submit</button>
             <h1>
               <ul>
