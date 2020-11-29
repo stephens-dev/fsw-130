@@ -6,16 +6,22 @@ import { ThemeContextConsumer } from './Data'
 function Display(props) {
     return(
         <ThemeContextConsumer> 
-        {context => (
-            <div>
-                {/* {console.log(context)} */}
-                <h1>
-                    {context[0].Title}
+        {({context}) => (
+            
+            <div className="container">
+                {context.map(
+                    ((item,index) => {return(
+                        <div key = {index}>
+                        <h1>
+                    {item.Title}
                 </h1>
                 <h3>
-                    {context[0].Description}
+                    {item.Description}
                 </h3>
-                <img src={context[0].Img}/>
+                <img src={item.Img}/>
+                </div>
+                    )})
+                )}
             </div>
         )}
         </ThemeContextConsumer>

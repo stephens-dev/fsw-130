@@ -1,38 +1,63 @@
 import React, {Component} from 'react'
-
+import Header from './Header'
 const {Provider, Consumer} = React.createContext()
-
 
 
 class ThemeContextProvider extends Component {
     state= {
         Content: [
-             {
+            {
                 Title: "Rock House",
                 Description: "How do you make a house like this.",
-                Img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.houselogic.com%2Fphotos%2Fhouse-hunting%2Fugly-houses%2Fslide%2Fa-house-that-rocks%2F&psig=AOvVaw0JO_70BCXphMVsJj-9fjQB&ust=1606676658911000&source=images&cd=vfe&ved=2ahUKEwifsLqN96XtAhUDKlMKHQE2DJcQr4kDegUIARDbAQ"
+                Img: "https://i.pinimg.com/originals/0f/be/54/0fbe545d6805b93a3c3ca18751b87d75.jpg"
             },
-             {
+            {
                 Title: "Haunted House",
                 Description: "Would you spend the night in this house.",
-                Img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mypropertynation.com%2Fyou-can-sell-your-ugly-house-without-a-realtor-heres-how%2F&psig=AOvVaw0JO_70BCXphMVsJj-9fjQB&ust=1606676658911000&source=images&cd=vfe&ved=2ahUKEwifsLqN96XtAhUDKlMKHQE2DJcQr4kDegUIARDdAQ"
+                Img: "https://www.mypropertynation.com/wp-content/uploads/2019/09/You-Can-Sell-Your-Ugly-House-Without-A-Realtor-1.jpg"
             },
-             {
+            {
                 Title: "Shoe House",
                 Description: "I wonder how it looks inside",
-                Img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F497014508855556351%2F&psig=AOvVaw0JO_70BCXphMVsJj-9fjQB&ust=1606676658911000&source=images&cd=vfe&ved=2ahUKEwifsLqN96XtAhUDKlMKHQE2DJcQr4kDegUIARDjAQ"
-
+                Img: "https://i.pinimg.com/originals/c5/42/0b/c5420bbd11e3217e43453327b1e35da6.jpg"
+                
             }
-
-
+            
+            
             
         ]
         
     }
+
+             addData = () =>  {
+                 this.setState(
+                    prevState => {
+                        var context = prevState.Content
+                        
+                    
+                context.push({
+                    Title: this.state.Title,
+                    Description: this.state.Description,
+                    Img: this.state.Img
+                })
+                return({Content: context})
+            }
+            )
+            }
+             handleChange = (e) =>  {
+                e.preventDefault()
+                const {name,value} = e.target
+                this.setState(
+                    {
+                        [name]: value
+                    }
+                )
+            }
+
         render() {
             // console.log(this.state.Content)
             return (
-            <Provider value= {this.state.Content}>
+            <Provider value= {{context:this.state.Content, addData:this.addData, handleChange:this.handleChange}}>
                 {this.props.children}
             </Provider>
             )
