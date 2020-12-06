@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  
+}
+body {
+  background-color: firebrick;
+}
+
+ul {
+  list-style-type: none;
+}
+.content {
+  text-align: center;
+  margin-top: 10%;
+  border: 2px solid black;
+  width: 200px;
+  margin-left: 42%;
+}
