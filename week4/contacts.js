@@ -4,7 +4,7 @@ const redux = require("redux")
 function addContact(contact) {
     return {
         type: "ADD_CONTACT",
-        payload: contact
+        payload: contact.split(",")
     }
 }
 
@@ -16,22 +16,26 @@ function deleteContact(contact) {
 }
 
 const initialState = {
-    contacts: []
+    firstName: [],
+    lastName: []
 }
 
 function reducer(state = initialState, action) {
     switch (action.type) {
         case "DELETE_CONTACT":
-            const contactsCopy = [...state.contacts]
-            const updatedContacts = state.contacts.filter(contact => contact !== action.payload)
+            const element = state.firstName.indexOf(action.payload)
+            const firstNames = state.firstName.splice((element, 1))
+            const lastNames = state.lastName.splice((element, 1))
+
             return {
-                ...state,
-                contacts: updatedContacts
+                firstName: firstNames, lastName: lastNames
+                
             }
             case "ADD_CONTACT":
                 return {
                     ...state,
-                    contacts: [...state.contacts, action.payload]
+                    firstName: [...state.firstName, action.payload[0]],
+                    lastName: [...state.lastName, action.payload[1]]
                 }
                 default:
                     return state
@@ -43,6 +47,6 @@ store.subscribe(() => {
     console.log(store.getState())
 })
 
-store.dispatch(addContact("fred"))
-store.dispatch(addContact("joe"))
+store.dispatch(addContact("joe, smoe"))
+store.dispatch(addContact("john, henery"))
 store.dispatch(deleteContact("joe"))
